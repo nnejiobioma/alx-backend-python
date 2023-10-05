@@ -4,9 +4,10 @@ This is a basic annotation
 adds two float
 """
 
+
 def add(a: float, b: float) -> float:
     """
-    Add two floats and return the result as a float.
+    Add two floats return the result as a float.
 
     Args:
         a (float): The first float.

@@ -1,9 +1,16 @@
 #!/usr/bin/env python3
-import time
-import asyncio
-from concurrent_coroutines import wait_n  # Import the wait_n function directly
+"""
+This helps to Calculate the execution
+time of 1 co-routine function
+"""
 
-def measure_time(n: int, max_delay: float) -> float:
+import asyncio
+import random
+import time
+wait_n = __import__('1-concurrent_coroutines').wait_n
+
+
+def measure_time(n: int, max_delay: int = 10) -> float:
     """Measure the execution time for wait_n.
 
     Args:
@@ -13,10 +20,10 @@ def measure_time(n: int, max_delay: float) -> float:
     Returns:
         float: The average execution time per call.
     """
-    total_elapsed = 0.0
-    for _ in range(n):
-        start_time = time.perf_counter()
-        asyncio.run(wait_n(1, max_delay))
-        end_time = time.perf_counter()
-        total_elapsed += end_time - start_time
-    return total_elapsed / n
+
+    elapsed_time: float
+
+    start_time = time.perf_counter()
+    asyncio.run(wait_n(n, max_delay))
+    elapsed_time = time.perf_counter() - start_time
+    return elapsed_time / n

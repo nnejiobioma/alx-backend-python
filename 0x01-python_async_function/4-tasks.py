@@ -10,17 +10,17 @@ from typing import List
 task_wait_random = __import__('3-tasks').task_wait_random
 
 
-async def task_wait_n(z: int, max_delay: int) -> List[float]:
+async def task_wait_n(n: int, max_delay: int) -> List[float]:
     '''
     Take the code from wait_n and alter it into a new function
 
     Args:
-        z: Number of iterations/items in list
+        n: Number of iterations/items in list
         max_delay: Maximum delay time in seconds
 
     Return: Sorted delay times
     '''
     delays = await asyncio.gather(
-        *tuple(map(lambda _: task_wait_random(max_delay), range(z)))
+        *tuple(map(lambda _: task_wait_random(max_delay), range(n)))
     )
     return sorted(delays)
